@@ -10,33 +10,145 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as DemoRouteImport } from './routes/demo'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppBackupRouteImport } from './routes/app.backup'
+import { Route as AppHarvestRouteImport } from './routes/app.harvest'
+import { Route as AppLedgerRouteImport } from './routes/app.ledger'
+import { Route as AppMarketsRouteImport } from './routes/app.markets'
+import { Route as AppSimulatorRouteImport } from './routes/app.simulator'
+import { Route as AppStrategyRouteImport } from './routes/app.strategy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBackupRoute = AppBackupRouteImport.update({
+  id: '/backup',
+  path: '/backup',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHarvestRoute = AppHarvestRouteImport.update({
+  id: '/harvest',
+  path: '/harvest',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLedgerRoute = AppLedgerRouteImport.update({
+  id: '/ledger',
+  path: '/ledger',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMarketsRoute = AppMarketsRouteImport.update({
+  id: '/markets',
+  path: '/markets',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSimulatorRoute = AppSimulatorRouteImport.update({
+  id: '/simulator',
+  path: '/simulator',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStrategyRoute = AppStrategyRouteImport.update({
+  id: '/strategy',
+  path: '/strategy',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/demo': typeof DemoRoute
+  '/app/backup': typeof AppBackupRoute
+  '/app/harvest': typeof AppHarvestRoute
+  '/app/ledger': typeof AppLedgerRoute
+  '/app/markets': typeof AppMarketsRoute
+  '/app/simulator': typeof AppSimulatorRoute
+  '/app/strategy': typeof AppStrategyRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
+  '/app/backup': typeof AppBackupRoute
+  '/app/harvest': typeof AppHarvestRoute
+  '/app/ledger': typeof AppLedgerRoute
+  '/app/markets': typeof AppMarketsRoute
+  '/app/simulator': typeof AppSimulatorRoute
+  '/app/strategy': typeof AppStrategyRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/demo': typeof DemoRoute
+  '/app/backup': typeof AppBackupRoute
+  '/app/harvest': typeof AppHarvestRoute
+  '/app/ledger': typeof AppLedgerRoute
+  '/app/markets': typeof AppMarketsRoute
+  '/app/simulator': typeof AppSimulatorRoute
+  '/app/strategy': typeof AppStrategyRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/demo'
+    | '/app/backup'
+    | '/app/harvest'
+    | '/app/ledger'
+    | '/app/markets'
+    | '/app/simulator'
+    | '/app/strategy'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/demo'
+    | '/app/backup'
+    | '/app/harvest'
+    | '/app/ledger'
+    | '/app/markets'
+    | '/app/simulator'
+    | '/app/strategy'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/demo'
+    | '/app/backup'
+    | '/app/harvest'
+    | '/app/ledger'
+    | '/app/markets'
+    | '/app/simulator'
+    | '/app/strategy'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  DemoRoute: typeof DemoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +160,98 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/backup': {
+      id: '/app/backup'
+      path: '/backup'
+      fullPath: '/app/backup'
+      preLoaderRoute: typeof AppBackupRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/harvest': {
+      id: '/app/harvest'
+      path: '/harvest'
+      fullPath: '/app/harvest'
+      preLoaderRoute: typeof AppHarvestRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ledger': {
+      id: '/app/ledger'
+      path: '/ledger'
+      fullPath: '/app/ledger'
+      preLoaderRoute: typeof AppLedgerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/markets': {
+      id: '/app/markets'
+      path: '/markets'
+      fullPath: '/app/markets'
+      preLoaderRoute: typeof AppMarketsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/simulator': {
+      id: '/app/simulator'
+      path: '/simulator'
+      fullPath: '/app/simulator'
+      preLoaderRoute: typeof AppSimulatorRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/strategy': {
+      id: '/app/strategy'
+      path: '/strategy'
+      fullPath: '/app/strategy'
+      preLoaderRoute: typeof AppStrategyRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppBackupRoute: typeof AppBackupRoute
+  AppHarvestRoute: typeof AppHarvestRoute
+  AppLedgerRoute: typeof AppLedgerRoute
+  AppMarketsRoute: typeof AppMarketsRoute
+  AppSimulatorRoute: typeof AppSimulatorRoute
+  AppStrategyRoute: typeof AppStrategyRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppBackupRoute: AppBackupRoute,
+  AppHarvestRoute: AppHarvestRoute,
+  AppLedgerRoute: AppLedgerRoute,
+  AppMarketsRoute: AppMarketsRoute,
+  AppSimulatorRoute: AppSimulatorRoute,
+  AppStrategyRoute: AppStrategyRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  DemoRoute: DemoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

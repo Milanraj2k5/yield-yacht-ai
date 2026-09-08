@@ -20,7 +20,8 @@ export function PriceChart() {
 
   const histPath = PRICE_SERIES.map((v, i) => `${i === 0 ? "M" : "L"}${x(i)},${y(v)}`).join(" ");
   const fStart = PRICE_SERIES.length - 1;
-  const forePath = [PRICE_SERIES[fStart], ...FORECAST_SERIES]
+  const last = PRICE_SERIES[fStart] ?? 0;
+  const forePath = [last, ...FORECAST_SERIES]
     .map((v, i) => `${i === 0 ? "M" : "L"}${x(fStart + i)},${y(v)}`)
     .join(" ");
 
@@ -31,13 +32,16 @@ export function PriceChart() {
   });
   const maPath = ma.map((v, i) => `${i === 0 ? "M" : "L"}${x(i)},${y(v)}`).join(" ");
 
-  const bandTop = [PRICE_SERIES[fStart], ...FORECAST_SERIES.map((v) => v + 1.6)];
-  const bandBot = [PRICE_SERIES[fStart], ...FORECAST_SERIES.map((v) => v - 1.6)];
+  const bandTop = [last, ...FORECAST_SERIES.map((v) => v + 1.6)];
+  const bandBot = [last, ...FORECAST_SERIES.map((v) => v - 1.6)];
   const bandPath =
     bandTop.map((v, i) => `${i === 0 ? "M" : "L"}${x(fStart + i)},${y(v)}`).join(" ") +
     " " +
     bandBot
-      .map((v, i) => `L${x(fStart + bandBot.length - 1 - i)},${y(bandBot[bandBot.length - 1 - i])}`)
+      .map((_, i) => {
+        const idx = bandBot.length - 1 - i;
+        return `L${x(fStart + idx)},${y(bandBot[idx] ?? 0)}`;
+      })
       .join(" ") +
     " Z";
 
@@ -130,7 +134,7 @@ export function PriceChart() {
 
         <motion.circle
           cx={x(fStart + 1)}
-          cy={y(FORECAST_SERIES[1])}
+          cy={y(FORECAST_SERIES[1] ?? 0)}
           r={6}
           fill="var(--color-gold)"
           initial={{ scale: 0 }}
