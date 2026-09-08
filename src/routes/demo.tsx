@@ -66,7 +66,7 @@ function DemoPage() {
               <Eyebrow>Guided demo</Eyebrow>
               <SectionHeading
                 title="One harvest, start to finish"
-                subtitle={`${HARVEST.quantity} kg ${HARVEST.crop} from ${HARVEST.village} — run the analysis and follow the plan through every screen.`}
+                subtitle={`${HARVEST.quantity} kg ${HARVEST.crop} from ${HARVEST.location} — run the analysis and follow the plan through every screen.`}
               />
             </div>
             <DemoBadge />

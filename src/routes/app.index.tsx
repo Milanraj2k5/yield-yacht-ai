@@ -43,7 +43,7 @@ function Dashboard() {
             <Eyebrow>Today</Eyebrow>
             <SectionHeading
               title="Your harvest dashboard"
-              subtitle={`${HARVEST.quantity} kg ${HARVEST.crop} from ${HARVEST.village}. One plan, fully reasoned.`}
+              subtitle={`${HARVEST.quantity} kg ${HARVEST.crop} from ${HARVEST.location}. One plan, fully reasoned.`}
             />
           </div>
           <DemoBadge />
