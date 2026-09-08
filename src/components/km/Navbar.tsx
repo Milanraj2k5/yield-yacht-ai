@@ -78,10 +78,10 @@ export function Navbar() {
 
 const MOBILE = [
   { to: "/app", label: "Home", icon: "🏠", exact: true },
-  { to: "/app/harvest", label: "Harvest", icon: "🌾" },
-  { to: "/app/markets", label: "Markets", icon: "📊" },
-  { to: "/app/strategy", label: "Strategy", icon: "🧠" },
-  { to: "/app/backup", label: "Alerts", icon: "🔔" },
+  { to: "/app/harvest", label: "Harvest", icon: "🌾", exact: false },
+  { to: "/app/markets", label: "Markets", icon: "📊", exact: false },
+  { to: "/app/strategy", label: "Strategy", icon: "🧠", exact: false },
+  { to: "/app/backup", label: "Alerts", icon: "🔔", exact: false },
 ] as const;
 
 export function MobileNav() {
