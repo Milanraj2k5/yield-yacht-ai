@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export function SpoilageTimeline() {
   const [day, setDay] = useState(0);
-  const cur = SPOILAGE[day];
+  const cur = SPOILAGE[day] ?? SPOILAGE[0]!;
 
   return (
     <div className="km-card p-5 sm:p-6">

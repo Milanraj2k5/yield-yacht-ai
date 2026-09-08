@@ -173,8 +173,7 @@ export function GlowButton({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      whileHover={disabled ? undefined : { y: -2 }}
-      whileTap={disabled ? undefined : { scale: 0.97 }}
+      {...(disabled ? {} : { whileHover: { y: -2 }, whileTap: { scale: 0.97 } })}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
         "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-medium tracking-tight transition-shadow disabled:cursor-not-allowed disabled:opacity-50",

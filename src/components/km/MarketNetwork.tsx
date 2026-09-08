@@ -39,7 +39,7 @@ const NODES: Node[] = [
   ...BUYERS.slice(0, 3).map((b, i) => {
     const angles = [30, 90, 255];
     const r = 215;
-    const rad = (angles[i] * Math.PI) / 180;
+    const rad = ((angles[i] ?? 0) * Math.PI) / 180;
     return {
       id: b.id,
       label: b.name,

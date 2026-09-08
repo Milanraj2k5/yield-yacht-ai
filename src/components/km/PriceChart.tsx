@@ -20,7 +20,8 @@ export function PriceChart() {
 
   const histPath = PRICE_SERIES.map((v, i) => `${i === 0 ? "M" : "L"}${x(i)},${y(v)}`).join(" ");
   const fStart = PRICE_SERIES.length - 1;
-  const forePath = [PRICE_SERIES[fStart], ...FORECAST_SERIES]
+  const last = PRICE_SERIES[fStart] ?? 0;
+  const forePath = [last, ...FORECAST_SERIES]
     .map((v, i) => `${i === 0 ? "M" : "L"}${x(fStart + i)},${y(v)}`)
     .join(" ");
 

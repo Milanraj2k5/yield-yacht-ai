@@ -89,7 +89,7 @@ export function AIAssistant() {
                     animate={{ opacity: 1, y: 0 }}
                     className="leading-relaxed text-foreground"
                   >
-                    {AI_QA[active].a}
+                    {AI_QA[active]?.a}
                   </motion.p>
                 )}
               </AnimatePresence>
